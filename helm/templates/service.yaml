@@ -15,6 +15,7 @@ spec:
   selector:
     {{- include "helm.selectorLabels" . | nindent 4 }}
 ---
+{{ if .Values.gateway.enabled }}
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -41,3 +42,4 @@ spec:
     - path:
         type: PathPrefix
         value: {{ .Values.gateway.path }}
+{{- end }}
